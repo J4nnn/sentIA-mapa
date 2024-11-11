@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mapa Leaflet</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="map" style="height: 600px;"></div>
+  <script>
+    var map = L.map('map').setView([7.119349, -73.122741], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var centrosSalud = [
+      { lat: 7.1491027, lng: -73.1346908978387, name: 'HOSPITAL LOCAL DEL NORTE' },
+      { lat: 7.12609035, lng: -73.1180923263249, name: 'Hospital Universitario Los Comuneros' },
+      { lat: 7.1098939, lng: -73.11175392062842, name: 'Clínica Metropolitana' },
+      { lat: 7.1187543, lng: -73.1118979, name: 'ALIANZA DIAGNOSTICA' },
+      { lat: 7.115876, lng: -73.111816, name: 'CENTRO MEDICO COLSANITAS' },
+      { lat: 7.096595600000001, lng: -73.11927537007995, name: 'CENTRO DE SALUD PABLO VI' },
+      { lat: 4.7440525, lng: -74.1081198, name: 'MUNICIPIO DE SAN ANDRES' },
+    ];
+
+    centrosSalud.forEach((centro) => {
+      L.marker([centro.lat, centro.lng]).addTo(map)
+        .bindPopup(centro.name);
+    });
+  </script>
+</body>
+</html>
